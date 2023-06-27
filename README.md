@@ -1,2 +1,2 @@
-# sistema_gestion
+# Panel de Administración
 Sistema de gestión con Springboot
