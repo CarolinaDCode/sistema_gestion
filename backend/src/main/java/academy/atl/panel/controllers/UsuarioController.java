@@ -1,32 +1,35 @@
 package academy.atl.panel.controllers;
 
 import academy.atl.panel.models.Usuario;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class UsuarioController {
 
-    @GetMapping("/api/usuarios")
-    public String hacerAlgo(){
+    List<Usuario> usuarios = new ArrayList<>();
 
-        Usuario user = new Usuario();
-        user.setId();
-        return "[\n" +
-                "    {\n" +
-                "        \"id\": 1,\n" +
-                "        \"nombre\": \"lucas\",\n" +
-                "        \"apellido\": \"moy\",\n" +
-                "        \"telefono\": \"21312323\",\n" +
-                "        \"email\": \"lucasmoy.dev@atl.acdemmy\"\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"id\": 1,\n" +
-                "        \"nombre\": \"lucas\",\n" +
-                "        \"apellido\": \"moy\",\n" +
-                "        \"telefono\": \"21312323\",\n" +
-                "        \"email\": \"lucasmoy.dev@atl.acdemmy\"\n" +
-                "    }\n" +
-                "]";
+    @GetMapping("/api/usuarios")
+    public List<Usuario> listaUsuarios(){
+        //Usuario user2 = new Usuario(2, "Thiago", "Vasquez", 982586924, "thiago@email.pe");
+        return usuarios;
+    }
+
+    @PostMapping("/api/usuarios")
+    public void agregarUsuario(@RequestBody Usuario user) {
+        usuarios.add(user);
+    }
+
+
+    @DeleteMapping("/api/usuarios/{id}")
+    public void eliminarUsuario(@PathVariable String id){
+        for (Usuario user : usuarios){
+            if (id.equals(user.getId().toString())){
+                usuarios.remove(user);
+            }
+        }
+        //Usuario usuarioEncontrado = usuarios.stream().filter(user -> user.getId().equals(id).findFirst().get());
     }
 }

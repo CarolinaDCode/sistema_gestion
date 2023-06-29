@@ -2,7 +2,11 @@ package academy.atl.panel.models;
 
 import lombok.*;
 
-@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
+
+/**
+ * @Data= @Getter @Setter @ToString  @NoArgsConstructor
+ */
+@Data @AllArgsConstructor
 public class Usuario {
     /**
      * lombok
